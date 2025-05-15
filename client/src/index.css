@@ -119,6 +119,9 @@
   body {
     @apply bg-background text-foreground;
     font-family: "Outfit", sans-serif;
+    .background {
+      @apply bg-[#ddfbfe];
+    }
     h1 {
       font-size: clamp(2rem, 5vw, 3rem); /* 32px to 48px */
     }
