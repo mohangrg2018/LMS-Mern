@@ -11,8 +11,8 @@ const Navbar = () => {
   const { user } = useUser();
   return (
     <header
-      className={`flex items-center justify-between px-4 md:px-16 lg:px-24 py-4 border-gray-500 border-b-1 ${
-        isCourseList ? "bg-white" : "background"
+      className={`flex items-center justify-between container__width py-4 border-gray-500 border-b-1 ${
+        isCourseList ? "bg-white" : "bg-cyan-100/70"
       }
         "hidden"}`}
     >
