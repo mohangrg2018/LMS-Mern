@@ -166,5 +166,11 @@
   }
   body {
     @apply bg-background text-foreground;
+
+    font-family: var(--font-sans);
+
+    .container__width {
+      @apply max-w-7xl mx-auto px-4;
+    }
   }
 }
