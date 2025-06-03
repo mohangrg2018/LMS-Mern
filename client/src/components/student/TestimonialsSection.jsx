@@ -1,6 +1,5 @@
 import { assets, dummyTestimonial } from "@/assets/assets";
 import React from "react";
-import { Button } from "../ui/button";
 import { Link } from "react-router-dom";
 
 const TestimonialsSection = () => {

@@ -15,7 +15,19 @@ const AppContextProvider = ({ children }) => {
     fetchAllCourses();
   }, []);
 
-  const value = { navigate, allCourses, currency };
+  // average rating of courses
+  const calculateRating = (course) => {
+    if (course.courseRatings.length === 0) {
+      return 0;
+    }
+    let sum = 0;
+    course.courseRatings.forEach((rating) => {
+      sum += rating.rating;
+    });
+    return sum / course.courseRatings.length;
+  };
+
+  const value = { navigate, allCourses, currency, calculateRating };
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>;
 };
 
