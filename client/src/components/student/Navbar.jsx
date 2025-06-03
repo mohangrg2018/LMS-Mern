@@ -1,22 +1,32 @@
 import { assets } from "@/assets/assets";
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useLocation } from "react-router-dom";
 import { Button } from "../ui/button";
-import { AppContext } from "@/context/AppContext";
 import { useClerk, UserButton, useUser } from "@clerk/clerk-react";
 
 const Navbar = () => {
-  // const { navigate } = useContext(AppContext);
-
   const { openSignUp } = useClerk();
   const { user } = useUser();
+  const location = useLocation();
 
   const isCourseListPage = location.pathname.includes("course-list");
+
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 10);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const bgClass = scrolled || isCourseListPage ? "bg-white" : "bg-cyan-200/30";
+
   return (
     <header
-      className={`py-4 sticky top-0 border-b border-gray-500 ${
-        isCourseListPage ? "bg-white" : "bg-cyan-200/30"
-      }`}
+      className={`py-4 sticky top-0 z-50 border-b border-gray-500 transition-colors duration-300 ${bgClass}`}
     >
       <div className="container__width flex justify-between items-center">
         <Link to="/">

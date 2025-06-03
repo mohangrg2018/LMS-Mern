@@ -18,7 +18,7 @@ const Hero = () => {
             />
           </span>
         </h1>
-        <p className="text-center text-gray-500">
+        <p className="text-center text-gray-400">
           We bring together world-class instructors to help you <br /> achieve
           your professional goals.
         </p>
