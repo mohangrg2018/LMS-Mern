@@ -14,7 +14,7 @@ const Navbar = () => {
   const isCourseListPage = location.pathname.includes("course-list");
   return (
     <header
-      className={`py-4 sticky top-0 border-b ${
+      className={`py-4 sticky top-0 border-b border-gray-500 ${
         isCourseListPage ? "bg-white" : "bg-cyan-200/30"
       }`}
     >
