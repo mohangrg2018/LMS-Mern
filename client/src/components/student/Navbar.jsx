@@ -1,10 +1,12 @@
 import { assets } from "@/assets/assets";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "../ui/button";
 import { useClerk, UserButton, useUser } from "@clerk/clerk-react";
+import { AppContext } from "@/context/AppContext";
 
 const Navbar = () => {
+  const { isEducator, setIsEducator, navigate } = useContext(AppContext);
   const { openSignUp } = useClerk();
   const { user } = useUser();
   const location = useLocation();
@@ -35,8 +37,13 @@ const Navbar = () => {
         <div className="hidden md:flex items-center gap-6">
           {user && (
             <>
-              <Link to="/educator">Become Educator</Link>|
-              <Link to="/my-enrollments">My Enrollments</Link>
+              <button
+                onClick={() => navigate("/educator")}
+                className="cursor-pointer hover:text-primary"
+              >
+                {isEducator ? "Educator Dashboard" : "Become Educator"}
+              </button>
+              |<Link to="/my-enrollments">My Enrollments</Link>
             </>
           )}
           {user ? (

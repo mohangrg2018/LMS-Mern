@@ -26,7 +26,11 @@ const TestimonialsSection = () => {
               </div>
             </div>
             <div className="px-6 flex flex-col gap-2">
-              <img src={assets.rating} alt="" />
+              <div className="flex items-center">
+                {[...Array(5)].map((_, index) => (
+                  <img key={index} src={assets.star} alt="" className="w-5" />
+                ))}
+              </div>
               <p className="text-gray-400">{testimonial.feedback}</p>
               <Link to="#" className="text-primary underline">
                 Read more

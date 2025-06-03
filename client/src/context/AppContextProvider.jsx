@@ -4,9 +4,11 @@ import { useNavigate } from "react-router-dom";
 import { dummyCourses } from "@/assets/assets";
 
 const AppContextProvider = ({ children }) => {
-  const navigate = useNavigate();
-  const [allCourses, setAllCourses] = useState([]);
   const currency = import.meta.env.VITE_CURRENCY;
+  const navigate = useNavigate();
+
+  const [allCourses, setAllCourses] = useState([]);
+  const [isEducator, setIsEducator] = useState(true);
   const fetchAllCourses = async () => {
     setAllCourses(dummyCourses);
   };
@@ -27,7 +29,14 @@ const AppContextProvider = ({ children }) => {
     return sum / course.courseRatings.length;
   };
 
-  const value = { navigate, allCourses, currency, calculateRating };
+  const value = {
+    navigate,
+    allCourses,
+    currency,
+    calculateRating,
+    isEducator,
+    setIsEducator,
+  };
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>;
 };
 
