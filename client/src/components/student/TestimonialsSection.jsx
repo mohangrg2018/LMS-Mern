@@ -25,10 +25,19 @@ const TestimonialsSection = () => {
                 <p>{testimonial.role}</p>
               </div>
             </div>
-            <div className="px-6 flex flex-col gap-2">
+            <div className="p-6 flex flex-col gap-2">
               <div className="flex items-center">
                 {[...Array(5)].map((_, index) => (
-                  <img key={index} src={assets.star} alt="" className="w-5" />
+                  <img
+                    key={index}
+                    src={
+                      index < Math.floor(testimonial.rating)
+                        ? assets.star
+                        : assets.star_blank
+                    }
+                    alt="star icon"
+                    className="w-5"
+                  />
                 ))}
               </div>
               <p className="text-gray-400">{testimonial.feedback}</p>
