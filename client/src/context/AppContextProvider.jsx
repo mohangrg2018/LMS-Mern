@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { AppContext } from "./AppContext";
 import { useNavigate } from "react-router-dom";
 import { dummyCourses } from "@/assets/assets";
+import humanizeDuration from "humanize-duration";
 
 const AppContextProvider = ({ children }) => {
   const currency = import.meta.env.VITE_CURRENCY;
@@ -12,10 +13,6 @@ const AppContextProvider = ({ children }) => {
   const fetchAllCourses = async () => {
     setAllCourses(dummyCourses);
   };
-
-  useEffect(() => {
-    fetchAllCourses();
-  }, []);
 
   // average rating of courses
   const calculateRating = (course) => {
@@ -29,6 +26,38 @@ const AppContextProvider = ({ children }) => {
     return sum / course.courseRatings.length;
   };
 
+  // Function to calculate course chapter time
+
+  const calculateChapterTime = (chapter) => {
+    let time = 0;
+    chapter.chapterContent.map((lecture) => (time += lecture.lectureDuration));
+    return humanizeDuration(time * 60 * 1000, { units: ["h", "m"] });
+  };
+
+  // Function to calculate course duration
+  const calculateCourseDuration = (course) => {
+    let time = 0;
+    course.courseContent.map((chapter) =>
+      chapter.chapterContent.map((lecture) => (time += lecture.lectureDuration))
+    );
+    return humanizeDuration(time * 60 * 1000, { units: ["h", "m"] });
+  };
+
+  // Function to calculate number of lectures
+  const calculateNoOfLectures = (course) => {
+    let totalLectures = 0;
+    course.courseContent.forEach((chapter) => {
+      if (Array.isArray(chapter.chapterContent)) {
+        totalLectures += chapter.chapterContent.length;
+      }
+    });
+    return totalLectures;
+  };
+
+  useEffect(() => {
+    fetchAllCourses();
+  }, []);
+
   const value = {
     navigate,
     allCourses,
@@ -36,6 +65,9 @@ const AppContextProvider = ({ children }) => {
     calculateRating,
     isEducator,
     setIsEducator,
+    calculateChapterTime,
+    calculateCourseDuration,
+    calculateNoOfLectures,
   };
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>;
 };

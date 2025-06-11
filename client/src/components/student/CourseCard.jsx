@@ -8,6 +8,7 @@ const CourseCard = ({ course }) => {
   return (
     <Link
       to={"/course/" + course._id}
+      onClick={() => scrollTo(0, 0)}
       className="flex flex-col border rounded-md"
     >
       <img
