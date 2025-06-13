@@ -13,7 +13,7 @@ const SearchBar = ({ data }) => {
     navigate("course-list/" + input);
   };
   return (
-    <form className="max-w-md flex items-center justify-between p-2 gap-2 border border-gray-200 rounded-sm">
+    <form className="w-full md:max-w-md flex items-center justify-between p-2 gap-2 border border-gray-200 rounded-sm">
       <img src={assets.search_icon} alt="search icon" />
       <input
         onChange={(e) => setInput(e.target.value)}
@@ -22,7 +22,11 @@ const SearchBar = ({ data }) => {
         placeholder="Search for a course"
         className="focus:outline-none"
       />
-      <Button onClick={onSubmitHandler} type="submit" className="rounded-sm">
+      <Button
+        onClick={onSubmitHandler}
+        type="submit"
+        className="rounded-sm px-8 lg:px-12"
+      >
         Search
       </Button>
     </form>
