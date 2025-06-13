@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import { Progress } from "@/components/ui/progress";
 import {
   Table,
   TableBody,
@@ -10,7 +11,6 @@ import {
 } from "@/components/ui/table";
 import { AppContext } from "@/context/AppContext";
 import { useContext, useState } from "react";
-import { Progress } from "@/components/ui/progress";
 const MyEnrollments = () => {
   const {
     enrolledCourses,
