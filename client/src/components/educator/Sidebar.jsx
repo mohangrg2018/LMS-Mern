@@ -14,17 +14,17 @@ const Sidebar = () => {
     },
     {
       name: "My Courses",
-      path: "/educator/add-course",
+      path: "/educator/my-courses",
       icon: assets.add_icon,
     },
     {
       name: "Add Course",
-      path: "/educator/my-courses",
+      path: "/educator/add-course",
       icon: assets.my_course_icon,
     },
     {
       name: "Students Enrolled",
-      path: "/educator/student-enrolled",
+      path: "/educator/students-enrolled",
       icon: assets.person_tick_icon,
     },
   ];
