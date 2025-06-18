@@ -31,7 +31,7 @@ const Sidebar = () => {
 
   return (
     isEducator && (
-      <section className="border-r">
+      <section className="border-r pt-2">
         {menuItems.map((item, index) => (
           <NavLink
             key={index}

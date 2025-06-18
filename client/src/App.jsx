@@ -28,13 +28,13 @@ const App = () => {
         <Route path="/player/:courseId" element={<Player />} />
         <Route path="/loading/:path" element={<Loading />} />
         <Route path="/educator" element={<Educator />}>
-          <Route path="dashboard" element={<Dashboard />} />
+          <Route path="/educator" element={<Dashboard />} />
           <Route path="add-course" element={<AddCourse />} />
           <Route path="my-courses" element={<MyCourses />} />
           <Route path="students-enrolled" element={<StudentsEnrolled />} />
         </Route>
       </Routes>
-      <Footer />
+      {!isEducatorRoute && <Footer />}
     </>
   );
 };
