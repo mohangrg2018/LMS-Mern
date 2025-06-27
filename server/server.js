@@ -3,6 +3,8 @@ import cors from "cors";
 import dotenv from "dotenv";
 import connectDB from "./configs/db.js";
 import { clerkWebhooks } from "./controllers/webhooks.js";
+import educatorRouter from "./routes/educatorRoutes.js";
+import { clerkMiddleware } from "@clerk/express";
 
 // Initialize dotenv
 dotenv.config();
@@ -16,13 +18,14 @@ await connectDB();
 // Middleware
 app.use(cors());
 app.use(express.json());
+app.use(clerkMiddleware());
 
 //Routes
 app.get("/", (req, res) => {
   res.send("app is running");
 });
-
-app.post("/clerk", express.json(), clerkWebhooks);
+app.post("/clerk", clerkWebhooks);
+app.use("/api/educator", educatorRouter);
 
 // Port
 const PORT = process.env.PORT || 5000;
